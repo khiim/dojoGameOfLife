@@ -12,19 +12,20 @@ namespace GameOfLife
     public partial class GameView : UserControl
     {
 
-        private static readonly Color background = Color.White;
-        private static readonly Color cell = Color.Black;
-
         private Processor processor;
 
         public GameView()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.UserPaint |
+            ControlStyles.OptimizedDoubleBuffer, true);
+            UpdateStyles();
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
 
             e.Graphics.FillRectangle(Brushes.White, this.Bounds);
 
